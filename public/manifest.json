@@ -1,6 +1,6 @@
 {
-    "short_name": "Strings",
-    "name": "Musical Strings",
+    "short_name": "Traveler",
+    "name": "Traveler",
     "icons": [
         {
             "src": "favicon.ico",
@@ -20,5 +20,5 @@
     ],
     "start_url": ".",
     "theme_color": "#000000",
-    "background_color": "#ffffff"
+    "background_color": "#000000"
 }
