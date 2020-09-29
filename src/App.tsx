@@ -45,7 +45,7 @@ const App = () => {
                     if (navigator.xr) {
                         setVR(true)
                     }
-                    gl.setClearColor('#000000')
+                    gl.setClearColor('#07060c')
                 }}
                 style={{
                     position: 'fixed',
@@ -67,7 +67,7 @@ const App = () => {
                 {enableEffects ? <Effects /> : null}
                 {vrAvailable ? <EnableVRButton /> : null}
                 <Camera />
-                <ambientLight args={['#BBBBBB', 0.15]} />
+                <ambientLight args={['#6368e2', 0.15]} />
             </Canvas>
             {vrButton}
         </>
