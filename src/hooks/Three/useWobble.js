@@ -1,12 +1,9 @@
-import { useRef } from 'react'
 import { useFrame } from 'react-three-fiber'
 
-const useWobble = (factor = 1, fn = 'sin', callback) => {
-    const ref = useRef()
+const useWobble = (ref, defaultValue, factor = 1, fn = 'sin', callback) => {
     useFrame((state) => {
         const time = state.clock.getElapsedTime()
-        // @ts-ignore
-        ref.current.position.y = Math[fn](time) * factor
+        ref.current.position.y = defaultValue + Math[fn](time) * factor
         if (callback) callback(time, ref.current)
     })
     return ref
