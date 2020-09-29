@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Stars } from 'drei'
 
-import useTurntable from '../hooks/Three/useTurntable'
+import useTurntable from '../hooks/useTurntable'
 
 const StarrySky = ({ factor = 4, ...props }) => {
     const star = useRef()
