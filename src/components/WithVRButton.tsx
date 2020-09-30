@@ -21,6 +21,7 @@ const NO_VR = 'VR Unavailable'
  * A wrapper for the VRButton import.
  * Allows disabling postprocessing effects when VR is enabled
  * Must called within the canvas tag because of useThree
+ * TODO: put gl to store, make this into a hook
  */
 const WithVRButton = () => {
     const [vrButton, setButton] = useState()
