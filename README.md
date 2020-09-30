@@ -1,6 +1,7 @@
 # traveler
 
 A simple scene made using react-three-fiber (r3f)<br>
+Enabling VR will disable post-processing effects<br>
 Live webite: https://mr-quin.github.io/traveler/
 
 ## Libraries
