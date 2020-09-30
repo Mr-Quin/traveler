@@ -37,6 +37,7 @@ const WithVRButton = () => {
     }, [vrButton, setEnableEffects])
 
     useEffect(() => {
+        if (!navigator.xr) return
         const button = VRButton.createButton(gl)
         setButton(button)
         navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
