@@ -1,31 +1,26 @@
-import React, { Suspense, useState } from 'react'
-import * as THREE from 'three'
+import React, { Suspense } from 'react'
 import { Canvas } from 'react-three-fiber'
 import useStore from './store'
-import Camera from './components/Camera'
-import Particles from './components/Particles'
-import Prism from './components/Prism'
-import Ground from './components/Ground'
-import Effects from './components/Effects'
-import Rings from './components/Rings'
-import Planets from './components/Planets'
-import StarrySky from './components/StarrySky'
-import EnableVRButton from './components/EnableVRButton'
+import Camera from './components/3d/Camera'
+import Particles from './components/3d/Particles'
+import Prism from './components/3d/Prism'
+import Ground from './components/3d/Ground'
+import Effects from './components/3d/Effects'
+import Rings from './components/3d/Rings'
+import Planets from './components/3d/Planets'
+import StarrySky from './components/3d/StarrySky'
+import UI from './components/UI'
+import WithVRButton from './components/WithVRButton'
 
-interface XRSystem {
-    isSessionSupported(sessionType: string): Promise<null>
-}
-declare global {
-    interface Navigator {
-        xr: XRSystem
-    }
-}
-
+/**
+ * TODO: Type all components
+ * TODO: Add loading screen
+ */
 const App = () => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-    const enableEffects = useStore((state) => state.enableEffects)
+    const isMobile: boolean = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    const quality = useStore((state) => state.quality)
+    const effectsEnabled = useStore((state) => state.effectsEnabled)
     const vrButton = useStore((state) => state.vrButton)
-    const [vrAvailable, setVR] = useState(false)
 
     return (
         <>
@@ -33,18 +28,14 @@ const App = () => {
                 vr
                 concurrent
                 gl={{ antialias: true }}
-                pixelRatio={window.devicePixelRatio}
+                pixelRatio={quality}
                 camera={{
                     fov: 80,
                     position: [0, 0, 0],
                     near: 0.005,
                     far: 10000,
                 }}
-                onCreated={(data: any) => {
-                    const gl: THREE.WebGLRenderer = data.gl
-                    if (navigator.xr) {
-                        setVR(true)
-                    }
+                onCreated={({ gl }) => {
                     gl.setClearColor('#07060c')
                 }}
                 style={{
@@ -64,12 +55,13 @@ const App = () => {
                     <Prism />
                     <Planets />
                 </Suspense>
-                {enableEffects ? <Effects /> : null}
-                {vrAvailable ? <EnableVRButton /> : null}
+                {effectsEnabled ? <Effects /> : null}
                 <Camera />
                 <ambientLight args={['#6368e2', 0.15]} />
+                <WithVRButton />
             </Canvas>
             {vrButton}
+            <UI />
         </>
     )
 }

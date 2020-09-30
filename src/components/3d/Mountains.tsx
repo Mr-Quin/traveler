@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import useStore from '../store'
+import useStore from '../../store'
 
 const Mountains = ({ ...props }) => {
     const pyramid = useRef()

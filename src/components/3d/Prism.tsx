@@ -1,10 +1,10 @@
 import React, { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { useFrame } from 'react-three-fiber'
-import useTurntable from '../hooks/useTurntable'
-import useWobble from '../hooks/useWobble'
+import useTurntable from '../../hooks/useTurntable'
+import useWobble from '../../hooks/useWobble'
 // import { useHelper } from 'drei'
-import useStore from '../store'
+import useStore from '../../store'
 
 const Prism = ({ ...props }) => {
     const mainColor = useStore((state) => state.prismColorMain)

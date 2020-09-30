@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import * as THREE from 'three'
-import useStore from '../store'
+import useStore from '../../store'
 
 const Ground = ({ ...props }) => {
     const meshRef = useRef()
