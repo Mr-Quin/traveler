@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { useFrame } from 'react-three-fiber'
-import useStore from '../store'
+import useStore from '../../store'
 
 const Rings = ({ count = 10, height = 20, rotation = 10, ...props }) => {
     const ringColor = useStore((state) => state.ringColor)

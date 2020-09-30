@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 // import { useHelper } from 'drei'
 import { useLoader } from 'react-three-fiber'
-import tex from '../assets/TDVC_Mars_Texture_Map.jpg'
-import normal from '../assets/TDVC_Mars_Texture_Normal.jpg'
-import useTurntable from '../hooks/useTurntable'
+import tex from '../../assets/TDVC_Mars_Texture_Map.jpg'
+import normal from '../../assets/TDVC_Mars_Texture_Normal.jpg'
+import useTurntable from '../../hooks/useTurntable'
 
 const Planets = ({ ...props }) => {
     const mars = useRef()
