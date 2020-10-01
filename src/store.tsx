@@ -1,6 +1,5 @@
 import create from 'zustand'
 import * as THREE from 'three'
-import { ReactComponentElement } from 'react'
 
 type State = {
     prismColorMain: THREE.Color
