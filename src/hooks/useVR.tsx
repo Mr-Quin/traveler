@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { VRButton } from 'three/examples/jsm/webxr/VRButton'
-import { useThree } from 'react-three-fiber'
 import useStore from '../store'
-import { UIButton } from '../components/UI'
 
 interface XRSystem {
     isSessionSupported(sessionType: string): Promise<null>

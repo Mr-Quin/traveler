@@ -1,7 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Html } from 'drei'
-import Prism from './Prism'
 
 const LoadingText = styled.div`
     color: white;
