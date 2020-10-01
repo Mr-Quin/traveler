@@ -9,18 +9,17 @@ import Effects from './components/3d/Effects'
 import Rings from './components/3d/Rings'
 import Planets from './components/3d/Planets'
 import StarrySky from './components/3d/StarrySky'
+import Loading from './components/3d/Loading'
 import UI from './components/UI'
-import WithVRButton from './components/WithVRButton'
 
 /**
  * TODO: Type all components
- * TODO: Add loading screen
  */
 const App = () => {
     const isMobile: boolean = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
     const quality = useStore((state) => state.quality)
     const effectsEnabled = useStore((state) => state.effectsEnabled)
-    const vrButton = useStore((state) => state.vrButton)
+    const setGL = useStore((state) => state.actions.setGL)
 
     return (
         <>
@@ -37,6 +36,7 @@ const App = () => {
                 }}
                 onCreated={({ gl }) => {
                     gl.setClearColor('#07060c')
+                    setGL(gl)
                 }}
                 style={{
                     position: 'fixed',
@@ -47,20 +47,18 @@ const App = () => {
                 }}
                 shadowMap
             >
-                <Suspense fallback={<>Loading</>}>
+                <Suspense fallback={<Loading />}>
                     <Particles count={2000} />
                     <StarrySky factor={isMobile ? 8 : 5} />
                     <Ground />
                     <Rings />
                     <Prism />
                     <Planets />
+                    <ambientLight args={['#6368e2', 0.15]} />
                 </Suspense>
                 {effectsEnabled ? <Effects /> : null}
                 <Camera />
-                <ambientLight args={['#6368e2', 0.15]} />
-                <WithVRButton />
             </Canvas>
-            {vrButton}
             <UI />
         </>
     )
