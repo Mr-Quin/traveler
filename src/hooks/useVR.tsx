@@ -20,7 +20,7 @@ const NO_VR = 'VR Unavailable'
  * Allows disabling postprocessing effects when VR is enabled
  */
 const useVR = (): [() => void, string, boolean] => {
-    const [threeButton, setThreeButton] = useState<HTMLButtonElement | null>(null)
+    const [threeButton, setThreeButton] = useState<HTMLButtonElement>()
     const [buttonText, setButtonText] = useState('')
     const [disabled, setDisabled] = useState(false)
 
@@ -28,7 +28,7 @@ const useVR = (): [() => void, string, boolean] => {
     const setEnableEffects = useStore((state) => state.actions.disableEffects)
 
     const onClickAction = useCallback(() => {
-        threeButton && threeButton.click()
+        threeButton!.click()
         setEnableEffects()
     }, [threeButton, setEnableEffects])
 
