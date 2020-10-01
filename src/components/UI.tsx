@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import useStore from '../store'
+import useVR from '../hooks/useVR'
 
 interface UIButtonProps {
     readonly position?: string
@@ -37,6 +38,7 @@ export const UIButton = styled.button<UIButtonProps>`
 
 const UI = ({ ...props }) => {
     const setQuality = useStore((state) => state.actions.setQuality)
+    const [vrButtonAction, buttonText, disabled] = useVR()
 
     return (
         <>
@@ -59,6 +61,16 @@ const UI = ({ ...props }) => {
                 <UIButton position={'relative'} border onClick={() => void setQuality(1)}>
                     High
                 </UIButton>
+            </UIButton>
+            <UIButton
+                bottom={'20px'}
+                right={'20px'}
+                width={'120px'}
+                border
+                onClick={vrButtonAction}
+                disabled={disabled}
+            >
+                {buttonText}
             </UIButton>
         </>
     )
