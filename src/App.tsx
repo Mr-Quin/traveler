@@ -6,7 +6,6 @@ import Particles from './components/3d/Particles'
 import Prism from './components/3d/Prism'
 import Ground from './components/3d/Ground'
 import Effects from './components/3d/Effects'
-import Rings from './components/3d/Rings'
 import Planets from './components/3d/Planets'
 import StarrySky from './components/3d/StarrySky'
 import Loading from './components/3d/Loading'
@@ -51,7 +50,6 @@ const App = () => {
                     <Particles count={2000} />
                     <StarrySky factor={isMobile ? 8 : 5} />
                     <Ground />
-                    <Rings />
                     <Prism />
                     <Planets />
                     <ambientLight args={['#6368e2', 0.15]} />
