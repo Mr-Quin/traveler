@@ -27,6 +27,8 @@ This website uses *Create React App*'s default [service worker](https://create-r
 * [styled-components](https://styled-components.com/)
 
 ## Run locally
+You need to have Git and NodeJS to run the following commands
+
     git clone https://github.com/Mr-Quin/traveler.git
     npm i
     npm run start
