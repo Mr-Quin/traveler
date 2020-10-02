@@ -29,7 +29,7 @@ const Particles = ({ count = 1500, ...props }) => {
         particles.forEach((particle, i) => {
             const { offset, scale, speed } = particle
             const d = (particle.d += speed / 2)
-            const a = Math.cos(d) + Math.sin(d * 1) / 100
+            const a = Math.cos(d) + Math.sin(d) / 100
             const b = Math.sin(d) + Math.cos(d * 2) / 100
             const r = Math.cos(d)
             dummy.position.set(offset.x + a / 10, offset.y + b / 10, offset.z + a / 10)
