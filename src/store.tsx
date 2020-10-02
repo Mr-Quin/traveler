@@ -4,6 +4,7 @@ import * as THREE from 'three'
 type State = {
     prismColorMain: THREE.Color
     prismColorSub: THREE.Color
+    prismPosition: THREE.Vector3
     ringColor: THREE.Color
     groundColor: THREE.Color
     glRenderer: THREE.WebGLRenderer | null
@@ -19,6 +20,7 @@ type State = {
 const useStore = create<State>((set, get) => ({
     prismColorMain: new THREE.Color('#355cd6'),
     prismColorSub: new THREE.Color('#6cbca0'),
+    prismPosition: new THREE.Vector3(0, 8, -20),
     ringColor: new THREE.Color('#d7ee9b'),
     groundColor: new THREE.Color('#555555'),
     glRenderer: null,
