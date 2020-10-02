@@ -30,4 +30,4 @@ This website uses *Create React App*'s default [service worker](https://create-r
     git clone https://github.com/Mr-Quin/traveler.git
     npm run start
     
-######This app was created using *create-react-app* with TypeScript
+######Created using *create-react-app* with TypeScript
