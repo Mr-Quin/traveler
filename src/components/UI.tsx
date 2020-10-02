@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import useStore from '../store'
 import useVR from '../hooks/useVR'
 
-interface UIButtonProps {
+type UIButtonProps = {
     readonly position?: string
     readonly top?: string
     readonly bottom?: string
@@ -36,7 +36,7 @@ export const UIButton = styled.button<UIButtonProps>`
     }
 `
 
-const UI = ({ ...props }) => {
+const UI = () => {
     const setQuality = useStore((state) => state.actions.setQuality)
     const [vrButtonAction, buttonText, disabled] = useVR()
 

@@ -12,14 +12,16 @@ declare global {
     }
 }
 
+type T = () => [() => void, string, boolean]
+
 const HAS_VR = 'Enter VR'
 const NO_VR = 'VR Unavailable'
 
 /**
- * A wrapper for the threejs VRButton import.
+ * A wrapper around the Threejs VRButton import.
  * Allows disabling postprocessing effects when VR is enabled
  */
-const useVR = (): [() => void, string, boolean] => {
+const useVR: T = () => {
     const [threeButton, setThreeButton] = useState<HTMLButtonElement>()
     const [buttonText, setButtonText] = useState('')
     const [disabled, setDisabled] = useState(false)

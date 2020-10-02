@@ -7,17 +7,17 @@ import normal from '../../assets/TDVC_Mars_Texture_Normal.jpg'
 import useTurntable from '../../hooks/useTurntable'
 
 const Planets = ({ ...props }) => {
-    const mars = useRef()
-    const sunLight = useRef<any>()
+    const mars = useRef<THREE.Mesh>()
+    const sunLight = useRef<THREE.DirectionalLight>()
 
-    const [target, setTarget] = useState()
+    const [target, setTarget] = useState<THREE.Object3D>()
 
     const marsTexture = useLoader(THREE.TextureLoader, tex)
     const marsNormal = useLoader(THREE.TextureLoader, normal)
 
     // useHelper(sunLight, THREE.DirectionalLightHelper, 10, 'teal')
-    useEffect(() => void (target && (sunLight.current.target = target)), [target])
-    useTurntable(mars, 'y', -0.0005)
+    useEffect(() => void (target && (sunLight.current!.target = target)), [target])
+    useTurntable(mars, { rate: -0.0005 })
 
     return (
         <>
