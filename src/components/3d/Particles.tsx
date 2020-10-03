@@ -20,7 +20,7 @@ const Particles = ({ count = 1500, ...props }) => {
                     .multiplyScalar(Math.random() * r),
 
                 speed: Math.random() / 200 + 0.01,
-                scale: Math.min(0.0001, Math.random() / 100),
+                scale: Math.min(0.1, Math.random() / 40),
             }
         })
     }, [count])
@@ -33,7 +33,6 @@ const Particles = ({ count = 1500, ...props }) => {
             const b = Math.sin(d) + Math.cos(d * 2) / 100
             const r = Math.cos(d)
             dummy.position.set(offset.x + a / 10, offset.y + b / 10, offset.z + a / 10)
-            // dummy.position.set(offset.x, offset.y, offset.z)
             dummy.scale.set(scale, scale, scale)
             dummy.rotation.set(r, r * 2, r * 3)
             dummy.updateMatrix()
@@ -46,14 +45,15 @@ const Particles = ({ count = 1500, ...props }) => {
         <instancedMesh
             ref={instance}
             args={[null as any, null as any, particles.length]}
+            position={[0, 1, 0]}
             frustumCulled={false}
         >
-            <coneBufferGeometry attach="geometry" args={[2, 2, 3]} />
+            <icosahedronBufferGeometry attach="geometry" args={[1]} />
             <meshStandardMaterial
                 attach="material"
                 roughness={0.1}
                 color={'#fefefe'}
-                emissive={new THREE.Color(0xffffff)}
+                emissive={new THREE.Color('#ffffff')}
                 emissiveIntensity={0.5}
             />
         </instancedMesh>
