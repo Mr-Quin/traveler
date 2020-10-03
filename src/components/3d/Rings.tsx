@@ -61,6 +61,7 @@ const Rings = forwardRef((props: Props, ref) => {
                     emissiveIntensity={0.5}
                     opacity={0.5}
                     transparent
+                    side={THREE.DoubleSide}
                 />
             </instancedMesh>
         </group>
