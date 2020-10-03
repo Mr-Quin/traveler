@@ -20,7 +20,7 @@ type State = {
 const useStore = create<State>((set, get) => ({
     prismColorMain: new THREE.Color('#355cd6'),
     prismColorSub: new THREE.Color('#6cbca0'),
-    prismPosition: new THREE.Vector3(0, 8, -20),
+    prismPosition: new THREE.Vector3(0, 8, 0),
     ringColor: new THREE.Color('#d7ee9b'),
     groundColor: new THREE.Color('#555555'),
     glRenderer: null,
