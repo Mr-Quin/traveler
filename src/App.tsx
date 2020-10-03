@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react'
 import { Canvas } from 'react-three-fiber'
-import { DeviceOrientationControls } from 'drei'
+import { OrbitControls } from 'drei'
 import useStore from './store'
-import Camera from './components/3d/Camera'
 import Particles from './components/3d/Particles'
 import Prism from './components/3d/Prism'
 import Ground from './components/3d/Ground'
@@ -11,10 +10,8 @@ import Planets from './components/3d/Planets'
 import StarrySky from './components/3d/StarrySky'
 import Loading from './components/3d/Loading'
 import UI from './components/UI'
+import * as THREE from 'three'
 
-/**
- * TODO: Type all components
- */
 const App = () => {
     const isMobile: boolean = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
     const quality = useStore((state) => state.quality)
@@ -27,10 +24,10 @@ const App = () => {
                 vr
                 concurrent
                 gl={{ antialias: true }}
-                pixelRatio={quality}
+                pixelRatio={isMobile ? quality / 2 : quality}
                 camera={{
                     fov: 80,
-                    position: [0, 1.6, 0],
+                    position: [0, 1.6, 20],
                     near: 0.005,
                     far: 1000,
                 }}
@@ -56,7 +53,16 @@ const App = () => {
                     <ambientLight args={['#6368e2', 0.15]} />
                 </Suspense>
                 {effectsEnabled ? <Effects /> : null}
-                {isMobile ? <DeviceOrientationControls /> : <Camera />}
+                <OrbitControls
+                    target={[0, 8, 0]}
+                    minDistance={10}
+                    maxDistance={125}
+                    maxPolarAngle={1.7}
+                    touches={{
+                        ONE: THREE.TOUCH.ROTATE,
+                        TWO: THREE.TOUCH.DOLLY_PAN,
+                    }}
+                />
             </Canvas>
             <UI />
         </>
