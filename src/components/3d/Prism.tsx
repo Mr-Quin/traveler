@@ -7,13 +7,18 @@ import useStore from '../../store'
 import Rings from './Rings'
 import { animated as a, useSpring } from 'react-spring/three'
 
+type SpringProps = {
+    rotation: [number, number, number]
+    scale: [number, number, number]
+}
+
 const Prism = ({ ...props }) => {
     const mainColor = useStore((state) => state.prismColorMain)
     const subColor = useStore((state) => state.prismColorSub)
     const prismPosition = useStore((state) => state.prismPosition)
     const prismScale: [number, number, number] = [1, 1.8, 1]
 
-    const [cubeSpring, setCubeSpring] = useSpring(() => ({
+    const [cubeSpring, setCubeSpring]: [SpringProps, any] = useSpring(() => ({
         rotation: [
             THREE.MathUtils.degToRad(Math.round(Math.random()) * 720),
             THREE.MathUtils.degToRad(Math.round(Math.random()) * 720),
@@ -29,9 +34,9 @@ const Prism = ({ ...props }) => {
             () =>
                 setCubeSpring({
                     rotation: [
-                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 360),
-                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 360),
-                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 360),
+                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 540),
+                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 540),
+                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 540),
                     ],
                 }),
             3000
@@ -114,7 +119,7 @@ const Prism = ({ ...props }) => {
                     />
                 </mesh>
             </group>
-            <Rings position={[0, -2, -20]} />
+            <Rings position={[0, -2, 0]} />
         </group>
     )
 }
