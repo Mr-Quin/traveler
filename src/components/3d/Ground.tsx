@@ -8,7 +8,7 @@ const Ground = () => {
 
     return (
         <mesh ref={ground} position={[0, -1.6, 0]} rotation={[THREE.MathUtils.degToRad(-90), 0, 0]}>
-            <planeBufferGeometry attach="geometry" args={[80, 80]} />
+            <planeBufferGeometry attach="geometry" args={[200, 200]} />
             <meshStandardMaterial attach="material" color={groundColor} roughness={1} />
         </mesh>
     )
