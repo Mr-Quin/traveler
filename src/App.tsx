@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import { Canvas } from 'react-three-fiber'
+import { DeviceOrientationControls } from 'drei'
 import useStore from './store'
 import Camera from './components/3d/Camera'
 import Particles from './components/3d/Particles'
@@ -29,9 +30,9 @@ const App = () => {
                 pixelRatio={quality}
                 camera={{
                     fov: 80,
-                    position: [0, 0, 0],
+                    position: [0, 1.6, 0],
                     near: 0.005,
-                    far: 10000,
+                    far: 1000,
                 }}
                 onCreated={({ gl }) => {
                     gl.setClearColor('#07060c')
@@ -55,7 +56,7 @@ const App = () => {
                     <ambientLight args={['#6368e2', 0.15]} />
                 </Suspense>
                 {effectsEnabled ? <Effects /> : null}
-                <Camera />
+                {isMobile ? <DeviceOrientationControls /> : <Camera />}
             </Canvas>
             <UI />
         </>
