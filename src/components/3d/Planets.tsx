@@ -21,30 +21,31 @@ const Planets = ({ ...props }) => {
 
     return (
         <>
-            <group
+            <mesh
+                ref={mars}
                 position={[35, 55, -60]}
                 rotation={[THREE.MathUtils.degToRad(30), 0, THREE.MathUtils.degToRad(5)]}
+                scale={[20, 20, 20]}
+                onUpdate={(self) => setTarget(self)}
             >
-                <mesh ref={mars} scale={[20, 20, 20]} onUpdate={(self) => setTarget(self)}>
-                    <sphereBufferGeometry attach="geometry" args={[1, 64, 32]} />
-                    <meshStandardMaterial
-                        attach="material"
-                        color={'#ffffff'}
-                        map={marsTexture}
-                        normalMap={marsNormal}
-                        roughness={1}
-                    />
-                </mesh>
-            </group>
-            <group position={[-120, 20, -800]}>
-                <directionalLight ref={sunLight} color={'#ffffff'} intensity={1} />
+                <sphereBufferGeometry attach="geometry" args={[1, 64, 32]} />
+                <meshStandardMaterial
+                    attach="material"
+                    color={'#ffffff'}
+                    map={marsTexture}
+                    normalMap={marsNormal}
+                    roughness={1}
+                />
+            </mesh>
+            <group position={[-60, 20, -300]}>
+                <directionalLight ref={sunLight} color={'#ffe3bf'} intensity={1} />
                 {/*<mesh scale={[20, 20, 20]}>*/}
                 {/*    <sphereBufferGeometry attach="geometry" args={[1, 64, 32]} />*/}
                 {/*    <meshStandardMaterial*/}
                 {/*        attach="material"*/}
                 {/*        color={'#ffffff'}*/}
                 {/*        roughness={1}*/}
-                {/*        emissive={new THREE.Color(0xe0d486)}*/}
+                {/*        emissive={new THREE.Color('#a1fff7')}*/}
                 {/*    />*/}
                 {/*</mesh>*/}
             </group>
