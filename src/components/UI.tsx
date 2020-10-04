@@ -51,17 +51,17 @@ const UI = () => {
             >
                 Source
             </UIButton>
-            <UIButton as={'div'} bottom={'20px'} left={'10px'} padding={'0'}>
-                <UIButton position={'relative'} border onClick={() => void setQuality(0.25)}>
-                    Low
-                </UIButton>
-                <UIButton position={'relative'} border onClick={() => void setQuality(0.5)}>
-                    Medium
-                </UIButton>
-                <UIButton position={'relative'} border onClick={() => void setQuality(1)}>
-                    High
-                </UIButton>
-            </UIButton>
+            {/*<UIButton as={'div'} bottom={'20px'} left={'10px'} padding={'0'}>*/}
+            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(0.25)}>*/}
+            {/*        Low*/}
+            {/*    </UIButton>*/}
+            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(0.5)}>*/}
+            {/*        Medium*/}
+            {/*    </UIButton>*/}
+            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(1)}>*/}
+            {/*        High*/}
+            {/*    </UIButton>*/}
+            {/*</UIButton>*/}
             <UIButton
                 bottom={'20px'}
                 right={'20px'}
