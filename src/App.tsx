@@ -50,6 +50,9 @@ const App = () => {
                     <Ground />
                     <Prism />
                     <Planets />
+                    <Environment />
+                    {/*<StarrySky factor={isMobile ? 25 : 20} />*/}
+                    {/*<Ground />*/}
                     <ambientLight args={['#6368e2', 0.15]} />
                 </Suspense>
                 {effectsEnabled ? <Effects /> : null}
