@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { useFrame, useLoader } from 'react-three-fiber'
+import { useLoader } from 'react-three-fiber'
 import marsTex from '../../assets/TDVC_Mars_Texture_Map.jpg'
 import marsNorm from '../../assets/TDVC_Mars_Texture_Normal.jpg'
 import moonTex from '../../assets/2k_ceres_fictional.jpg'
