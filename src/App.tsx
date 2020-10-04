@@ -26,7 +26,7 @@ const App = () => {
                 gl={{ antialias: true }}
                 pixelRatio={isMobile ? quality / 2 : quality}
                 camera={{
-                    fov: 80,
+                    fov: 70,
                     position: [0, 1.6, 20],
                     near: 0.005,
                     far: 10000,
