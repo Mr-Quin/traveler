@@ -61,7 +61,7 @@ const Planets = ({ ...props }) => {
             <group ref={moon2} position={moon2Position}>
                 <mesh scale={[30, 30, 30]}>
                     <sphereBufferGeometry attach="geometry" args={[1, 64, 32]} />
-                    <meshStandardMaterial attach="material" color={'#888888'} map={moon2Texture} />
+                    <meshStandardMaterial attach="material" color={'#666666'} map={moon2Texture} />
                 </mesh>
             </group>
             {/*sun*/}
