@@ -12,6 +12,7 @@ type State = {
     moon1Position: THREE.Vector3
     moon2Position: THREE.Vector3
     glRenderer: THREE.WebGLRenderer | null
+    isMobile: boolean
     effectsEnabled: boolean
     quality: number
     actions: {
@@ -32,6 +33,7 @@ const useStore = create<State>((set, get) => ({
     moon1Position: new THREE.Vector3(-650, 5, -400),
     moon2Position: new THREE.Vector3(100, -50, 400),
     glRenderer: null,
+    isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
     effectsEnabled: true,
     quality: window.devicePixelRatio,
     actions: {
