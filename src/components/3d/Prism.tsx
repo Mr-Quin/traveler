@@ -27,9 +27,9 @@ const Prism = ({ ...props }) => {
 
     const [cubeSpring, setCubeSpring]: [SpringProps, any] = useSpring(() => ({
         rotation: [
-            THREE.MathUtils.degToRad(Math.round(Math.random()) * 720),
-            THREE.MathUtils.degToRad(Math.round(Math.random()) * 720),
-            THREE.MathUtils.degToRad(Math.round(Math.random()) * 720),
+            Math.random() * Math.PI * 4,
+            Math.random() * Math.PI * 4,
+            Math.random() * Math.PI * 4,
         ],
         scale: [1.4, 1.4, 1.4],
         from: { rotation: [0, 0, 0], scale: [1.4, 1.4, 1.4] },
@@ -37,18 +37,19 @@ const Prism = ({ ...props }) => {
     }))
 
     useEffect(() => {
-        setInterval(
+        const interval = setInterval(
             () =>
-                setCubeSpring({
+                void setCubeSpring({
                     rotation: [
-                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 540),
-                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 540),
-                        THREE.MathUtils.degToRad(Math.round(Math.random()) * 540),
+                        Math.random() * Math.PI * 4,
+                        Math.random() * Math.PI * 4,
+                        Math.random() * Math.PI * 4,
                     ],
                 }),
             3000
         )
-    }, [])
+        return () => void clearInterval(interval)
+    }, [setCubeSpring])
 
     useWobble(prismGroup, { defaultValue: prismPosition.y, factor: 0.5 })
     useTurntable(prismGroup, { rate: 0.005 })
@@ -57,6 +58,7 @@ const Prism = ({ ...props }) => {
         const time = clock.getElapsedTime()
         cube.current!.material.emissiveIntensity = Math.sin(time * Math.PI * 0.5) / 2 + 1.5
 
+        // explode the cube
         // const { position, normal } = cube.current!.geometry.attributes
         // for (let i = 0; i < 36; i++) {
         //     const px = position.array[i * 3]
