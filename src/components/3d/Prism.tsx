@@ -13,10 +13,6 @@ type SpringProps = {
 }
 
 const Prism = ({ ...props }) => {
-    const mainColor = useStore((state) => state.prismColorMain)
-    const subColor = useStore((state) => state.prismColorSub)
-    const prismPosition = useStore((state) => state.prismPosition)
-    const prismScale: [number, number, number] = [1, 1.8, 1]
 
     const [cubeSpring, setCubeSpring]: [SpringProps, any] = useSpring(() => ({
         rotation: [
@@ -103,8 +99,8 @@ const Prism = ({ ...props }) => {
                 <mesh scale={prismScale} geometry={prismGeometry}>
                     <meshStandardMaterial
                         attach="material"
-                        color={subColor}
-                        emissive={mainColor}
+                        color={prismColorSecondary}
+                        emissive={prismColorPrimary}
                         wireframe
                     />
                 </mesh>
