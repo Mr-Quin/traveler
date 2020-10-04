@@ -13,6 +13,17 @@ type SpringProps = {
 }
 
 const Prism = ({ ...props }) => {
+    const { prismColorPrimary, prismColorSecondary, prismPosition, prismScale } = useStore(
+        (state) => state
+    )
+
+    const prismGroup = useRef<THREE.Group>()
+    const cube = useRef<THREE.Mesh<THREE.BoxBufferGeometry, THREE.MeshStandardMaterial>>()
+    const light1 = useRef<THREE.PointLight>()
+    const light2 = useRef<THREE.PointLight>()
+
+    const prismGeometry = useMemo(() => new THREE.SphereBufferGeometry(3.5, 4, 2), [])
+    const cubeGeometry = useMemo(() => new THREE.BoxBufferGeometry(1, 1, 1).toNonIndexed(), [])
 
     const [cubeSpring, setCubeSpring]: [SpringProps, any] = useSpring(() => ({
         rotation: [
@@ -38,14 +49,6 @@ const Prism = ({ ...props }) => {
             3000
         )
     }, [])
-
-    const prismGroup = useRef<THREE.Group>()
-    const cube = useRef<THREE.Mesh<THREE.BoxBufferGeometry, THREE.MeshStandardMaterial>>()
-    const light1 = useRef<THREE.PointLight>()
-    const light2 = useRef<THREE.PointLight>()
-
-    const prismGeometry = useMemo(() => new THREE.SphereBufferGeometry(3.5, 4, 2), [])
-    const cubeGeometry = useMemo(() => new THREE.BoxBufferGeometry(1, 1, 1).toNonIndexed(), [])
 
     useWobble(prismGroup, { defaultValue: prismPosition.y, factor: 0.5 })
     useTurntable(prismGroup, { rate: 0.005 })
@@ -83,15 +86,14 @@ const Prism = ({ ...props }) => {
         <group>
             <group ref={prismGroup} position={prismPosition}>
                 {/*light*/}
-                <pointLight ref={light1} distance={20} color={mainColor} />
-                <pointLight ref={light2} distance={20} color={mainColor} />
+                <pointLight ref={light1} distance={20} color={prismColorPrimary} />
+                <pointLight ref={light2} distance={20} color={prismColorPrimary} />
                 {/*light cube*/}
                 <a.mesh ref={cube} geometry={cubeGeometry} {...cubeSpring}>
                     <meshStandardMaterial
                         attach="material"
-                        color={mainColor}
-                        emissive={mainColor}
-                        emissiveIntensity={1}
+                        color={prismColorSecondary}
+                        emissive={prismColorPrimary}
                         side={THREE.DoubleSide}
                     />
                 </a.mesh>
@@ -108,14 +110,13 @@ const Prism = ({ ...props }) => {
                 <mesh scale={prismScale} geometry={prismGeometry}>
                     <meshPhysicalMaterial
                         attach="material"
-                        color={subColor}
-                        roughness={1}
+                        color={prismColorSecondary}
                         opacity={0.4}
                         transparent
                     />
                 </mesh>
             </group>
-            <Rings position={[0, -2, 0]} />
+            <Rings position={[prismPosition.x, prismPosition.y - 10, prismPosition.z]} />
         </group>
     )
 }
