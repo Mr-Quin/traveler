@@ -18,13 +18,17 @@ This website uses *Create React App*'s default [service worker](https://create-r
 2. Bundle size could be reduced further
 
 ## Libraries
-* [React](https://reactjs.org/)
+* [react](https://reactjs.org/)
 * [three.js](https://threejs.org/)
 * [react-three-fiber](https://github.com/react-spring/react-three-fiber/tree/master)
 * [react-spring ecosystem](https://github.com/react-spring/react-three-fiber/tree/master#ecosystem)
     * [drei](https://github.com/pmndrs/drei)
     * [zustand](https://github.com/pmndrs/zustand)
 * [styled-components](https://styled-components.com/)
+
+## Texure Source
+* https://www.solarsystemscope.com/textures/
+* https://sketchfab.com/3d-models/planet-mars-8k-pbr-texture-8b1272d148454eaa8e30ca04e89cc8f3
 
 ## Run locally
 You need to have Git and NodeJS to run the following commands
