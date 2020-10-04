@@ -11,6 +11,7 @@ import StarrySky from './components/3d/StarrySky'
 import Loading from './components/3d/Loading'
 import UI from './components/UI'
 import * as THREE from 'three'
+import Environment from './components/3d/Environment'
 
 const App = () => {
     const isMobile: boolean = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
@@ -45,9 +46,7 @@ const App = () => {
                 shadowMap
             >
                 <Suspense fallback={<Loading />}>
-                    <Particles count={2000} />
-                    <StarrySky factor={isMobile ? 8 : 5} />
-                    <Ground />
+                    <Particles count={1000} />
                     <Prism />
                     <Planets />
                     <Environment />
@@ -60,7 +59,7 @@ const App = () => {
                     target={[0, 8, 0]}
                     minDistance={10}
                     maxDistance={125}
-                    maxPolarAngle={1.7}
+                    // maxPolarAngle={1.7}
                     touches={{
                         ONE: THREE.TOUCH.ROTATE,
                         TWO: THREE.TOUCH.DOLLY_PAN,
