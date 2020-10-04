@@ -21,7 +21,6 @@ const Particles = ({ count = 1500, ...props }) => {
                 )
                     .normalize()
                     .multiplyScalar(Math.random() * r),
-
                 speed: Math.random() / 200 + 0.01,
                 scale: Math.min(0.1, Math.random() / 40),
             }
