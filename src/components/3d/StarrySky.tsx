@@ -19,7 +19,7 @@ const StarrySky = (props: Props) => {
 
     return (
         <>
-            <Stars saturation={0.8} depth={20} factor={factor} fade ref={star} />
+            <Stars saturation={0.8} radius={400} depth={100} factor={factor} fade ref={star} />
         </>
     )
 }
