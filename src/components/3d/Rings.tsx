@@ -39,10 +39,11 @@ const Rings = forwardRef((props: Props, ref) => {
             }
             const d = (torus.z += 0.001)
             const rd = (torus.r += 0.001)
+            const size = 8 * Math.sin(Math.PI * z)
 
             dummy.position.set(0, THREE.MathUtils.lerp(0, height, d), 0)
             dummy.rotation.set(Math.PI / 2, 0, rd)
-            dummy.scale.set(8 * Math.sin(Math.PI * z), 8 * Math.sin(Math.PI * z), 1)
+            dummy.scale.set(size, size, size)
             dummy.updateMatrix()
             instance.current!.setMatrixAt(i, dummy.matrix)
         })
@@ -52,7 +53,7 @@ const Rings = forwardRef((props: Props, ref) => {
     return (
         <group ref={ref as React.MutableRefObject<THREE.Group>} {...props}>
             <instancedMesh ref={instance} args={[null as any, null as any, toruses.length]}>
-                <ringBufferGeometry attach="geometry" args={[1, 1.02, 3]} />
+                <torusBufferGeometry attach="geometry" args={[1, 0.002, 5, 3]} />
                 <meshStandardMaterial
                     attach="material"
                     roughness={0.1}
