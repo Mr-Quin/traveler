@@ -29,7 +29,7 @@ const App = () => {
                     fov: 80,
                     position: [0, 1.6, 20],
                     near: 0.005,
-                    far: 1000,
+                    far: 10000,
                 }}
                 onCreated={({ gl }) => {
                     gl.setClearColor('#07060c')
