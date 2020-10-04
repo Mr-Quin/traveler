@@ -1,14 +1,17 @@
 import React, { useRef, useMemo } from 'react'
 import * as THREE from 'three'
 import { useFrame } from 'react-three-fiber'
+import useStore from '../../store'
 
 const Particles = ({ count = 1500, ...props }) => {
-    const instance = useRef<any>()
+    const instance = useRef<THREE.InstancedMesh>()
+
+    const emissionColor = useStore((state) => state.prismColorSecondary)
 
     const dummy = useMemo(() => new THREE.Object3D(), [])
     const particles: any[] = useMemo(() => {
         return new Array(count).fill(null).map(() => {
-            const r = 10
+            const r = 5
             return {
                 d: Math.random() * 10,
                 offset: new THREE.Vector3(
@@ -36,26 +39,20 @@ const Particles = ({ count = 1500, ...props }) => {
             dummy.scale.set(scale, scale, scale)
             dummy.rotation.set(r, r * 2, r * 3)
             dummy.updateMatrix()
-            instance.current.setMatrixAt(i, dummy.matrix)
+            instance.current!.setMatrixAt(i, dummy.matrix)
         })
-        instance.current.instanceMatrix.needsUpdate = true
+        instance.current!.instanceMatrix.needsUpdate = true
     })
 
     return (
         <instancedMesh
             ref={instance}
             args={[null as any, null as any, particles.length]}
-            position={[0, 1, 0]}
+            position={[0, 8, 0]}
             frustumCulled={false}
         >
             <icosahedronBufferGeometry attach="geometry" args={[1]} />
-            <meshStandardMaterial
-                attach="material"
-                roughness={0.1}
-                color={'#fefefe'}
-                emissive={new THREE.Color('#ffffff')}
-                emissiveIntensity={0.5}
-            />
+            <meshStandardMaterial attach="material" color={'#ffffff'} emissive={emissionColor} />
         </instancedMesh>
     )
 }
