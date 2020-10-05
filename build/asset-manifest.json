@@ -1,27 +1,28 @@
 {
   "files": {
-    "main.css": "/traveler/static/css/main.6c4eaec2.chunk.css",
-    "main.js": "/traveler/static/js/main.40c91345.chunk.js",
-    "main.js.map": "/traveler/static/js/main.40c91345.chunk.js.map",
-    "runtime-main.js": "/traveler/static/js/runtime-main.8c3ffe73.js",
-    "runtime-main.js.map": "/traveler/static/js/runtime-main.8c3ffe73.js.map",
-    "static/js/2.f40905b1.chunk.js": "/traveler/static/js/2.f40905b1.chunk.js",
-    "static/js/2.f40905b1.chunk.js.map": "/traveler/static/js/2.f40905b1.chunk.js.map",
-    "index.html": "/traveler/index.html",
-    "precache-manifest.e327d3a56261dc908c2806807fe654bc.js": "/traveler/precache-manifest.e327d3a56261dc908c2806807fe654bc.js",
-    "service-worker.js": "/traveler/service-worker.js",
-    "static/css/main.6c4eaec2.chunk.css.map": "/traveler/static/css/main.6c4eaec2.chunk.css.map",
-    "static/js/2.f40905b1.chunk.js.LICENSE.txt": "/traveler/static/js/2.f40905b1.chunk.js.LICENSE.txt",
-    "static/media/2k_ceres_fictional.jpg": "/traveler/static/media/2k_ceres_fictional.e7dce55f.jpg",
-    "static/media/2k_haumea_fictional.jpg": "/traveler/static/media/2k_haumea_fictional.11888d39.jpg",
-    "static/media/2k_makemake_fictional.jpg": "/traveler/static/media/2k_makemake_fictional.37998f7c.jpg",
-    "static/media/2k_sun.jpg": "/traveler/static/media/2k_sun.f8d91fb7.jpg",
-    "static/media/8k_stars_milky_way.jpg": "/traveler/static/media/8k_stars_milky_way.6e6ebeca.jpg"
+    "main.css": "./static/css/main.6c4eaec2.chunk.css",
+    "main.js": "./static/js/main.f87bf382.chunk.js",
+    "main.js.map": "./static/js/main.f87bf382.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.ec4b02a1.js",
+    "runtime-main.js.map": "./static/js/runtime-main.ec4b02a1.js.map",
+    "static/js/2.a8dd8cb1.chunk.js": "./static/js/2.a8dd8cb1.chunk.js",
+    "static/js/2.a8dd8cb1.chunk.js.map": "./static/js/2.a8dd8cb1.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.7cc659aa67a3ce9e0fff8f0e19aae245.js": "./precache-manifest.7cc659aa67a3ce9e0fff8f0e19aae245.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.6c4eaec2.chunk.css.map": "./static/css/main.6c4eaec2.chunk.css.map",
+    "static/js/2.a8dd8cb1.chunk.js.LICENSE.txt": "./static/js/2.a8dd8cb1.chunk.js.LICENSE.txt",
+    "static/media/2k_ceres_fictional.jpg": "./static/media/2k_ceres_fictional.e7dce55f.jpg",
+    "static/media/2k_haumea_fictional.jpg": "./static/media/2k_haumea_fictional.11888d39.jpg",
+    "static/media/2k_makemake_fictional.jpg": "./static/media/2k_makemake_fictional.37998f7c.jpg",
+    "static/media/2k_sun.jpg": "./static/media/2k_sun.f8d91fb7.jpg",
+    "static/media/8k_stars_milky_way.jpg": "./static/media/8k_stars_milky_way.6e6ebeca.jpg",
+    "static/media/ambient.ogg": "./static/media/ambient.51e1df41.ogg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8c3ffe73.js",
-    "static/js/2.f40905b1.chunk.js",
+    "static/js/runtime-main.ec4b02a1.js",
+    "static/js/2.a8dd8cb1.chunk.js",
     "static/css/main.6c4eaec2.chunk.css",
-    "static/js/main.40c91345.chunk.js"
+    "static/js/main.f87bf382.chunk.js"
   ]
 }
