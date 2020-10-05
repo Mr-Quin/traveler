@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import useStore from '../store'
+// import useStore from '../store'
 import useVR from '../hooks/useVR'
 
 type UIButtonProps = {
@@ -37,7 +37,7 @@ export const UIButton = styled.button<UIButtonProps>`
 `
 
 const UI = () => {
-    const setQuality = useStore((state) => state.actions.setQuality)
+    // const setQuality = useStore((state) => state.actions.setQuality)
     const [vrButtonAction, buttonText, disabled] = useVR()
 
     return (
@@ -48,6 +48,7 @@ const UI = () => {
                 left={'10px'}
                 border
                 href={'https://github.com/Mr-Quin/traveler'}
+                target={'/'}
             >
                 Source
             </UIButton>
