@@ -14,14 +14,15 @@ This website uses *Create React App*'s default [service worker](https://create-r
     work together in the official three.js build. 
 
     There is a [pull request](https://github.com/mrdoob/three.js/pull/18846) about this on the three.js Github.
-    
-2. Bundle size could be reduced further
+2. Exiting VR has no handler. A page refresh is needed to bring back bloom.
+3. Bundle size could be reduced further
 
 ## Libraries
 * [react](https://reactjs.org/)
 * [three.js](https://threejs.org/)
 * [react-three-fiber](https://github.com/react-spring/react-three-fiber/tree/master)
-* [react-spring ecosystem](https://github.com/react-spring/react-three-fiber/tree/master#ecosystem)
+* [r3f ecosystem](https://github.com/react-spring/react-three-fiber/tree/master#ecosystem)
+    * [react-spring](https://github.com/pmndrs/react-spring)
     * [drei](https://github.com/pmndrs/drei)
     * [zustand](https://github.com/pmndrs/zustand)
 * [styled-components](https://styled-components.com/)
@@ -36,5 +37,6 @@ You need to have Git and NodeJS to run the following commands
     git clone https://github.com/Mr-Quin/traveler.git
     npm i
     npm run start
+You may need to change the homepage url in package.json for it to work correctly.
     
 ######Created using *create-react-app* with TypeScript
