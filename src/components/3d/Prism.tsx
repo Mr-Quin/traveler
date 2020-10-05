@@ -12,10 +12,15 @@ type SpringProps = {
     scale: [number, number, number]
 }
 
+const selector = (state) => ({
+    prismColorPrimary: state.prismColorPrimary,
+    prismColorSecondary: state.prismColorSecondary,
+    prismPosition: state.prismPosition,
+    prismScale: state.prismScale,
+})
+
 const Prism = ({ ...props }) => {
-    const { prismColorPrimary, prismColorSecondary, prismPosition, prismScale } = useStore(
-        (state) => state
-    )
+    const { prismColorPrimary, prismColorSecondary, prismPosition, prismScale } = useStore(selector)
 
     const prismGroup = useRef<THREE.Group>()
     const cube = useRef<THREE.Mesh<THREE.BoxBufferGeometry, THREE.MeshStandardMaterial>>()
