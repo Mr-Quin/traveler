@@ -45,4 +45,15 @@ const useStore = create<State>((set, get) => ({
     },
 }))
 
+type AudioState = {
+    audio: boolean
+    toggleAudio: () => void
+}
+
+const useAudioStore = create<AudioState>((set, get) => ({
+    audio: false,
+    toggleAudio: () => void set({ audio: !get().audio }),
+}))
+
 export default useStore
+export { useAudioStore }
