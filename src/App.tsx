@@ -1,25 +1,26 @@
 import React, { Suspense } from 'react'
 import { Canvas } from 'react-three-fiber'
+import { OrbitControls } from 'drei'
 import useStore from './store'
-import Camera from './components/3d/Camera'
 import Particles from './components/3d/Particles'
 import Prism from './components/3d/Prism'
-import Ground from './components/3d/Ground'
+// import Ground from './components/3d/Ground'
 import Effects from './components/3d/Effects'
-import Rings from './components/3d/Rings'
 import Planets from './components/3d/Planets'
-import StarrySky from './components/3d/StarrySky'
+// import StarrySky from './components/3d/StarrySky'
 import Loading from './components/3d/Loading'
+import Environment from './components/3d/Environment'
+import VRCamera from './components/3d/VRCamera'
 import UI from './components/UI'
+import * as THREE from 'three'
 
-/**
- * TODO: Type all components
- */
 const App = () => {
-    const isMobile: boolean = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-    const quality = useStore((state) => state.quality)
-    const effectsEnabled = useStore((state) => state.effectsEnabled)
-    const setGL = useStore((state) => state.actions.setGL)
+    const {
+        cameraPosition,
+        effectsEnabled,
+        prismPosition,
+        actions: { setGL },
+    } = useStore((state) => state)
 
     return (
         <>
@@ -27,12 +28,11 @@ const App = () => {
                 vr
                 concurrent
                 gl={{ antialias: true }}
-                pixelRatio={quality}
                 camera={{
-                    fov: 80,
-                    position: [0, 0, 0],
-                    near: 0.005,
-                    far: 10000,
+                    fov: 70,
+                    position: cameraPosition,
+                    near: 0.01,
+                    far: 4000,
                 }}
                 onCreated={({ gl }) => {
                     gl.setClearColor('#07060c')
@@ -48,16 +48,26 @@ const App = () => {
                 shadowMap
             >
                 <Suspense fallback={<Loading />}>
-                    <Particles count={2000} />
-                    <StarrySky factor={isMobile ? 8 : 5} />
-                    <Ground />
-                    <Rings />
+                    <Particles count={350} />
                     <Prism />
                     <Planets />
+                    {effectsEnabled ? <Environment /> : null}
+                    {/*<StarrySky factor={isMobile ? 25 : 20} />*/}
+                    {/*<Ground />*/}
                     <ambientLight args={['#6368e2', 0.15]} />
                 </Suspense>
                 {effectsEnabled ? <Effects /> : null}
-                <Camera />
+                {effectsEnabled ? null : <VRCamera />}
+                <OrbitControls
+                    target={prismPosition}
+                    minDistance={10}
+                    maxDistance={125}
+                    // maxPolarAngle={1.7}
+                    touches={{
+                        ONE: THREE.TOUCH.ROTATE,
+                        TWO: THREE.TOUCH.DOLLY_PAN,
+                    }}
+                />
             </Canvas>
             <UI />
         </>

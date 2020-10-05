@@ -2,18 +2,13 @@ import React, { useRef } from 'react'
 import * as THREE from 'three'
 import useStore from '../../store'
 
-const Ground = ({ ...props }) => {
-    const meshRef = useRef()
+const Ground = () => {
+    const ground = useRef<THREE.Mesh>()
     const groundColor = useStore((state) => state.groundColor)
 
     return (
-        <mesh
-            ref={meshRef}
-            position={[0, -1.6, 0]}
-            rotation={[THREE.MathUtils.degToRad(-90), 0, 0]}
-            {...props}
-        >
-            <planeBufferGeometry attach="geometry" args={[80, 80]} />
+        <mesh ref={ground} position={[0, -1.6, 0]} rotation={[THREE.MathUtils.degToRad(-90), 0, 0]}>
+            <planeBufferGeometry attach="geometry" args={[50, 50]} />
             <meshStandardMaterial attach="material" color={groundColor} roughness={1} />
         </mesh>
     )

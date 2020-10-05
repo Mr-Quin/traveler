@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Html } from 'drei'
+import useStore from '../../store'
 
 const LoadingText = styled.div`
     color: white;
@@ -11,10 +12,12 @@ const LoadingText = styled.div`
     opacity: 0.8;
 `
 
-const Loading = ({ ...props }) => {
+const Loading = () => {
+    const position = useStore((state) => state.prismPosition)
+
     return (
         <group>
-            <mesh position={[0, 8, -20]} {...props}>
+            <mesh position={position}>
                 <boxBufferGeometry attach="geometry" args={[0, 0, 0]} />
                 <Html center>
                     <LoadingText>Loading...</LoadingText>

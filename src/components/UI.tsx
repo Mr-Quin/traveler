@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import useStore from '../store'
+// import useStore from '../store'
 import useVR from '../hooks/useVR'
 
-interface UIButtonProps {
+type UIButtonProps = {
     readonly position?: string
     readonly top?: string
     readonly bottom?: string
@@ -36,8 +36,8 @@ export const UIButton = styled.button<UIButtonProps>`
     }
 `
 
-const UI = ({ ...props }) => {
-    const setQuality = useStore((state) => state.actions.setQuality)
+const UI = () => {
+    // const setQuality = useStore((state) => state.actions.setQuality)
     const [vrButtonAction, buttonText, disabled] = useVR()
 
     return (
@@ -48,20 +48,21 @@ const UI = ({ ...props }) => {
                 left={'10px'}
                 border
                 href={'https://github.com/Mr-Quin/traveler'}
+                target={'/'}
             >
                 Source
             </UIButton>
-            <UIButton as={'div'} bottom={'20px'} left={'10px'} padding={'0'}>
-                <UIButton position={'relative'} border onClick={() => void setQuality(0.25)}>
-                    Low
-                </UIButton>
-                <UIButton position={'relative'} border onClick={() => void setQuality(0.5)}>
-                    Medium
-                </UIButton>
-                <UIButton position={'relative'} border onClick={() => void setQuality(1)}>
-                    High
-                </UIButton>
-            </UIButton>
+            {/*<UIButton as={'div'} bottom={'20px'} left={'10px'} padding={'0'}>*/}
+            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(0.25)}>*/}
+            {/*        Low*/}
+            {/*    </UIButton>*/}
+            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(0.5)}>*/}
+            {/*        Medium*/}
+            {/*    </UIButton>*/}
+            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(1)}>*/}
+            {/*        High*/}
+            {/*    </UIButton>*/}
+            {/*</UIButton>*/}
             <UIButton
                 bottom={'20px'}
                 right={'20px'}

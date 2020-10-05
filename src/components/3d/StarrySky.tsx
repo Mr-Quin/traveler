@@ -3,14 +3,23 @@ import { Stars } from 'drei'
 
 import useTurntable from '../../hooks/useTurntable'
 
-const StarrySky = ({ factor = 4, ...props }) => {
+type Props = {
+    readonly factor?: number
+}
+
+/**
+ * A wrapper around the drei Stars component to add the turntable effect
+ */
+const StarrySky = (props: Props) => {
+    const { factor = 4 } = props
+
     const star = useRef()
 
-    useTurntable(star, 'y', -0.00005)
+    useTurntable(star, { rate: -0.00005 })
 
     return (
         <>
-            <Stars saturation={0.8} depth={10} factor={factor} fade ref={star} />
+            <Stars saturation={0.8} radius={400} depth={100} factor={factor} fade ref={star} />
         </>
     )
 }
