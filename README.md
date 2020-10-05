@@ -39,4 +39,4 @@ You need to have Git and NodeJS to run the following commands
     npm run start
 You may need to change the homepage url in package.json for it to work correctly.
     
-######Created using *create-react-app* with TypeScript
+###### Created using *create-react-app* with TypeScript
