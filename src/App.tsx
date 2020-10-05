@@ -4,20 +4,23 @@ import { OrbitControls } from 'drei'
 import useStore from './store'
 import Particles from './components/3d/Particles'
 import Prism from './components/3d/Prism'
-import Ground from './components/3d/Ground'
+// import Ground from './components/3d/Ground'
 import Effects from './components/3d/Effects'
 import Planets from './components/3d/Planets'
-import StarrySky from './components/3d/StarrySky'
+// import StarrySky from './components/3d/StarrySky'
 import Loading from './components/3d/Loading'
+import Environment from './components/3d/Environment'
+import VRCamera from './components/3d/VRCamera'
 import UI from './components/UI'
 import * as THREE from 'three'
-import Environment from './components/3d/Environment'
 
 const App = () => {
-    const isMobile: boolean = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-    const quality = useStore((state) => state.quality)
-    const effectsEnabled = useStore((state) => state.effectsEnabled)
-    const setGL = useStore((state) => state.actions.setGL)
+    const {
+        cameraPosition,
+        effectsEnabled,
+        prismPosition,
+        actions: { setGL },
+    } = useStore((state) => state)
 
     return (
         <>
@@ -25,12 +28,11 @@ const App = () => {
                 vr
                 concurrent
                 gl={{ antialias: true }}
-                pixelRatio={isMobile ? quality / 2 : quality}
                 camera={{
                     fov: 70,
-                    position: [0, 1.6, 20],
-                    near: 0.005,
-                    far: 10000,
+                    position: cameraPosition,
+                    near: 0.01,
+                    far: 4000,
                 }}
                 onCreated={({ gl }) => {
                     gl.setClearColor('#07060c')
@@ -46,17 +48,18 @@ const App = () => {
                 shadowMap
             >
                 <Suspense fallback={<Loading />}>
-                    <Particles count={1000} />
+                    <Particles count={350} />
                     <Prism />
                     <Planets />
-                    <Environment />
+                    {effectsEnabled ? <Environment /> : null}
                     {/*<StarrySky factor={isMobile ? 25 : 20} />*/}
                     {/*<Ground />*/}
                     <ambientLight args={['#6368e2', 0.15]} />
                 </Suspense>
                 {effectsEnabled ? <Effects /> : null}
+                {effectsEnabled ? null : <VRCamera />}
                 <OrbitControls
-                    target={[0, 8, 0]}
+                    target={prismPosition}
                     minDistance={10}
                     maxDistance={125}
                     // maxPolarAngle={1.7}
