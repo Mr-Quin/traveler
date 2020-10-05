@@ -19,7 +19,6 @@ const NO_VR = 'VR Unavailable'
 
 /**
  * A wrapper around the Threejs VRButton import.
- * Allows disabling postprocessing effects when VR is enabled
  */
 const useVR: T = () => {
     const [threeButton, setThreeButton] = useState<HTMLButtonElement>()
@@ -27,11 +26,11 @@ const useVR: T = () => {
     const [disabled, setDisabled] = useState(false)
 
     const gl = useStore((state) => state.glRenderer)
-    const setEnableEffects = useStore((state) => state.actions.disableEffects)
+    const setEnableEffects = useStore((state) => state.actions.setEnableEffects)
 
     const onClickAction = useCallback(() => {
         threeButton!.click()
-        setEnableEffects()
+        setEnableEffects(false)
     }, [threeButton, setEnableEffects])
 
     useEffect(() => {
