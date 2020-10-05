@@ -33,7 +33,7 @@ const Prism = ({ ...props }) => {
         ],
         scale: [1.4, 1.4, 1.4],
         from: { rotation: [0, 0, 0], scale: [1.4, 1.4, 1.4] },
-        config: { mass: 30, tension: 10, friction: 10 },
+        config: { mass: 30, tension: 10, friction: 6 },
     }))
 
     useEffect(() => {
@@ -59,24 +59,24 @@ const Prism = ({ ...props }) => {
         cube.current!.material.emissiveIntensity = Math.sin(time * Math.PI * 0.5) / 2 + 1.5
 
         // explode the cube
-        // const { position, normal } = cube.current!.geometry.attributes
-        // for (let i = 0; i < 36; i++) {
-        //     const px = position.array[i * 3]
-        //     const py = position.array[i * 3 + 1]
-        //     const pz = position.array[i * 3 + 2]
-        //
-        //     const nx = normal.array[i * 3]
-        //     const ny = normal.array[i * 3 + 1]
-        //     const nz = normal.array[i * 3 + 2]
-        //
-        //     position.setXYZ(
-        //         i,
-        //         px + nx * 0.001 * Math.sin(time),
-        //         py + ny * 0.001 * Math.sin(time),
-        //         pz + nz * 0.001 * Math.sin(time)
-        //     )
-        // }
-        // position.needsUpdate = true
+        /*        const { position, normal } = cube.current!.geometry.attributes
+        for (let i = 0; i < 36; i++) {
+            const px = position.array[i * 3]
+            const py = position.array[i * 3 + 1]
+            const pz = position.array[i * 3 + 2]
+
+            const nx = normal.array[i * 3]
+            const ny = normal.array[i * 3 + 1]
+            const nz = normal.array[i * 3 + 2]
+
+            position.setXYZ(
+                i,
+                px + nx * 0.001 * Math.sin(time),
+                py + ny * 0.001 * Math.sin(time),
+                pz + nz * 0.001 * Math.sin(time)
+            )
+        }
+        position.needsUpdate = true*/
 
         light1.current!.intensity = cube.current!.material.emissiveIntensity
         light1.current!.position.y = prismGroup.current!.position.y
