@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import { Canvas } from 'react-three-fiber'
+import * as THREE from 'three'
 import { OrbitControls } from 'drei'
 import useStore from './store'
 import Particles from './components/3d/Particles'
@@ -12,15 +13,17 @@ import Loading from './components/3d/Loading'
 import Environment from './components/3d/Environment'
 import VRCamera from './components/3d/VRCamera'
 import UI from './components/UI'
-import * as THREE from 'three'
+import Sound from './components/Sound'
+
+const selector = (state) => ({
+    cameraPosition: state.cameraPosition,
+    effectsEnabled: state.effectsEnabled,
+    prismPosition: state.prismPosition,
+    setGL: state.actions.setGL,
+})
 
 const App = () => {
-    const {
-        cameraPosition,
-        effectsEnabled,
-        prismPosition,
-        actions: { setGL },
-    } = useStore((state) => state)
+    const { cameraPosition, effectsEnabled, prismPosition, setGL } = useStore(selector)
 
     return (
         <>
@@ -55,6 +58,7 @@ const App = () => {
                     {/*<StarrySky factor={isMobile ? 25 : 20} />*/}
                     {/*<Ground />*/}
                     <ambientLight args={['#6368e2', 0.15]} />
+                    <Sound />
                 </Suspense>
                 {effectsEnabled ? <Effects /> : null}
                 {effectsEnabled ? null : <VRCamera />}

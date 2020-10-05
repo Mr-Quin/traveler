@@ -10,13 +10,19 @@ import useTurntable from '../../hooks/useTurntable'
 import useOrbit from '../../hooks/useOrbit'
 import useStore from '../../store'
 
+const selector = (state) => ({
+    marsPosition: state.marsPosition,
+    moon1Position: state.moon1Position,
+    moon2Position: state.moon2Position,
+})
+
 const Planets = ({ ...props }) => {
     const mars = useRef<THREE.Group>()
     const moon1 = useRef<THREE.Group>()
     const moon2 = useRef<THREE.Group>()
     const sunLight = useRef<THREE.DirectionalLight>()
 
-    const { marsPosition, moon1Position, moon2Position } = useStore((state) => state)
+    const { marsPosition, moon1Position, moon2Position } = useStore(selector)
 
     const [target, setTarget] = useState<THREE.Object3D>()
 

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 // import useStore from '../store'
 import useVR from '../hooks/useVR'
+import { useAudioStore } from '../store'
 
 type UIButtonProps = {
     readonly position?: string
@@ -37,7 +38,8 @@ export const UIButton = styled.button<UIButtonProps>`
 `
 
 const UI = () => {
-    // const setQuality = useStore((state) => state.actions.setQuality)
+    const audio = useAudioStore((state) => state.audio)
+    const toggleAudio = useAudioStore((state) => state.toggleAudio)
     const [vrButtonAction, buttonText, disabled] = useVR()
 
     return (
@@ -52,17 +54,9 @@ const UI = () => {
             >
                 Source
             </UIButton>
-            {/*<UIButton as={'div'} bottom={'20px'} left={'10px'} padding={'0'}>*/}
-            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(0.25)}>*/}
-            {/*        Low*/}
-            {/*    </UIButton>*/}
-            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(0.5)}>*/}
-            {/*        Medium*/}
-            {/*    </UIButton>*/}
-            {/*    <UIButton position={'relative'} border onClick={() => void setQuality(1)}>*/}
-            {/*        High*/}
-            {/*    </UIButton>*/}
-            {/*</UIButton>*/}
+            <UIButton bottom={'20px'} left={'10px'} border onClick={toggleAudio}>
+                Audio: {audio ? 'On' : 'Off'}
+            </UIButton>
             <UIButton
                 bottom={'20px'}
                 right={'20px'}
