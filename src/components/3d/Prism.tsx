@@ -3,13 +3,12 @@ import * as THREE from 'three'
 import { useFrame } from 'react-three-fiber'
 import useTurntable from '../../hooks/useTurntable'
 import useWobble from '../../hooks/useWobble'
-import useStore from '../../store'
+import useStore from '../../stores/store'
 import Rings from './Rings'
 import { animated as a, useSpring } from 'react-spring/three'
 
 type SpringProps = {
     rotation: [number, number, number]
-    scale: [number, number, number]
 }
 
 const selector = (state) => ({
@@ -19,7 +18,7 @@ const selector = (state) => ({
     prismScale: state.prismScale,
 })
 
-const Prism = ({ ...props }) => {
+const Prism = () => {
     const { prismColorPrimary, prismColorSecondary, prismPosition, prismScale } = useStore(selector)
 
     const prismGroup = useRef<THREE.Group>()
@@ -36,8 +35,7 @@ const Prism = ({ ...props }) => {
             Math.random() * Math.PI * 4,
             Math.random() * Math.PI * 4,
         ],
-        scale: [1.4, 1.4, 1.4],
-        from: { rotation: [0, 0, 0], scale: [1.4, 1.4, 1.4] },
+        from: { rotation: [0, 0, 0] },
         config: { mass: 30, tension: 10, friction: 6 },
     }))
 
@@ -96,7 +94,7 @@ const Prism = ({ ...props }) => {
                 <pointLight ref={light1} distance={20} color={prismColorPrimary} />
                 <pointLight ref={light2} distance={20} color={prismColorPrimary} />
                 {/*light cube*/}
-                <a.mesh ref={cube} geometry={cubeGeometry} {...cubeSpring}>
+                <a.mesh ref={cube} geometry={cubeGeometry} scale={[1.4, 1.4, 1.4]} {...cubeSpring}>
                     <meshStandardMaterial
                         attach="material"
                         color={prismColorSecondary}

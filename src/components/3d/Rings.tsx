@@ -1,15 +1,15 @@
 import React, { forwardRef, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { ReactThreeFiber, useFrame } from 'react-three-fiber'
-import useStore from '../../store'
+import useStore from '../../stores/store'
 
-interface Props extends ReactThreeFiber.Object3DNode<THREE.Group, typeof THREE.Group> {
+interface RingProps extends ReactThreeFiber.Object3DNode<THREE.Group, typeof THREE.Group> {
     count?: number
     height?: number
     rotationOffset?: number
 }
 
-const Rings = forwardRef((props: Props, ref) => {
+const Rings = forwardRef((props: RingProps, ref) => {
     const { count = 10, height = 20, rotationOffset = 10 } = props
 
     const ringColor = useStore((state) => state.ringColor)
@@ -19,31 +19,32 @@ const Rings = forwardRef((props: Props, ref) => {
     const dummy = useMemo(() => new THREE.Object3D(), [])
     const toruses = useMemo(
         () =>
-            new Array(count).fill(null).map((elt, i) => ({
-                z: i / count,
-                r: THREE.MathUtils.degToRad(i * rotationOffset),
+            [...Array(count)].map((elt, i) => ({
+                yPos: i / count,
+                rotation: THREE.MathUtils.degToRad(i * rotationOffset),
             })),
         [count, rotationOffset]
     )
 
     useFrame(() => {
         toruses.forEach((torus, i, arr) => {
-            const { z } = torus
-            if (z >= 1) {
-                torus.z = 0
+            const { yPos } = torus
+            if (yPos >= 1) {
+                torus.yPos = 0
                 if (i < toruses.length - 1) {
-                    torus.r = arr[i + 1].r + THREE.MathUtils.degToRad(rotationOffset)
+                    torus.rotation = arr[i + 1].rotation + THREE.MathUtils.degToRad(rotationOffset)
                 } else {
-                    torus.r = arr[0].r + THREE.MathUtils.degToRad(rotationOffset)
+                    torus.rotation = arr[0].rotation + THREE.MathUtils.degToRad(rotationOffset)
                 }
             }
-            const d = (torus.z += 0.001)
-            const rd = (torus.r += 0.001)
-            const size = 8 * Math.sin(Math.PI * z)
+            const y = (torus.yPos += 0.001)
+            const rot = (torus.rotation += 0.001)
 
-            dummy.position.set(0, THREE.MathUtils.lerp(0, height, d), 0)
-            dummy.rotation.set(Math.PI / 2, 0, rd)
-            dummy.scale.set(size, size, size)
+            const scale = 8 * Math.sin(Math.PI * yPos)
+
+            dummy.position.set(0, THREE.MathUtils.lerp(0, height, y), 0)
+            dummy.rotation.set(Math.PI / 2, 0, rot)
+            dummy.scale.set(scale, scale, scale)
             dummy.updateMatrix()
             instance.current!.setMatrixAt(i, dummy.matrix)
         })
