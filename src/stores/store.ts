@@ -23,6 +23,7 @@ type State = {
 
 const useStore = create<State>((set, get) => ({
     statics: {},
+    sunRef: undefined,
     prismColorPrimary: new THREE.Color('#355cd6'),
     prismColorSecondary: new THREE.Color('#6cbca0'),
     prismPosition: new THREE.Vector3(0, 8, 0),
