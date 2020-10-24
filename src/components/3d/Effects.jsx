@@ -9,7 +9,7 @@ import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader'
 
 extend({ EffectComposer, ShaderPass, RenderPass, UnrealBloomPass })
 
-const Effects = ({ ...props }) => {
+const Effects = () => {
     const composer = useRef()
     const { scene, gl, size, camera } = useThree()
     const aspect = useMemo(() => new THREE.Vector2(size.width, size.height), [size])
@@ -18,7 +18,7 @@ const Effects = ({ ...props }) => {
     return (
         <effectComposer ref={composer} args={[gl]}>
             <renderPass attachArray="passes" scene={scene} camera={camera} />
-            <unrealBloomPass attachArray="passes" args={[aspect, 2, 1, 0.2]} />
+            <unrealBloomPass attachArray="passes" args={[aspect, 1, 1, 0.2]} />
             <shaderPass
                 attachArray="passes"
                 args={[FXAAShader]}
