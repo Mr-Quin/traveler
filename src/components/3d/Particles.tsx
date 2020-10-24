@@ -1,7 +1,7 @@
 import React, { useRef, useMemo } from 'react'
 import * as THREE from 'three'
 import { useFrame } from 'react-three-fiber'
-import useStore from '../../store'
+import useStore from '../../stores/store'
 
 const Particles = ({ count = 1500, ...props }) => {
     const instance = useRef<THREE.InstancedMesh>()
@@ -10,30 +10,26 @@ const Particles = ({ count = 1500, ...props }) => {
 
     const dummy = useMemo(() => new THREE.Object3D(), [])
     const particles: any[] = useMemo(() => {
-        return new Array(count).fill(null).map(() => {
-            const r = 5
-            return {
-                d: Math.random() * 10,
-                offset: new THREE.Vector3(
-                    Math.random() - 0.5,
-                    Math.random() - 0.5,
-                    Math.random() - 0.5
-                )
-                    .normalize()
-                    .multiplyScalar(Math.random() * r),
-                speed: Math.random() / 200 + 0.01,
-                scale: Math.min(0.1, Math.random() / 40),
-            }
-        })
+        const r = 5
+        return [...Array(count)].map(() => ({
+            d: Math.random() * 10,
+            offset: new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
+                .normalize()
+                .multiplyScalar(Math.random() * r),
+            speed: Math.random() / 200 + 0.01,
+            scale: Math.min(0.1, Math.random() / 40),
+        }))
     }, [count])
 
     useFrame(() => {
         particles.forEach((particle, i) => {
             const { offset, scale, speed } = particle
             const d = (particle.d += speed / 2)
-            const a = Math.cos(d) + Math.sin(d) / 100
-            const b = Math.sin(d) + Math.cos(d * 2) / 100
-            const r = Math.cos(d)
+            const cos = Math.cos(d)
+            const sin = Math.sin(d)
+            const a = cos + sin / 100
+            const b = sin + Math.cos(d * 2) / 100
+            const r = cos
             dummy.position.set(offset.x + a / 10, offset.y + b / 10, offset.z + a / 10)
             dummy.scale.set(scale, scale, scale)
             dummy.rotation.set(r, r * 2, r * 3)
