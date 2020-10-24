@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
-import { useAudioStore } from '../store'
+import useAudioStore from '../stores/AudioStore'
 
-const ambientAudio = require('../assets/ambient.ogg') // using import causes error in ts
-const ambient = new Audio(ambientAudio)
+import { ambientSound } from '../assets'
+
+const ambient = new Audio(ambientSound)
 
 const Sound = () => {
     const shouldPlay = useAudioStore((state) => state.audio)
