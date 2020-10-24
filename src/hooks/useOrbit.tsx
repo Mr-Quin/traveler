@@ -2,7 +2,7 @@ import React from 'react'
 import { useFrame } from 'react-three-fiber'
 import * as THREE from 'three'
 
-type T = (
+type Orbit = (
     ref: React.MutableRefObject<any>,
     targetRef: React.MutableRefObject<any>,
     options: {
@@ -11,7 +11,7 @@ type T = (
     }
 ) => React.MutableRefObject<any>
 
-const useOrbit: T = (ref, targetRef, { axis = new THREE.Vector3(0, 1, 0), rate = 0.01 }) => {
+const useOrbit: Orbit = (ref, targetRef, { axis = new THREE.Vector3(0, 1, 0), rate = 0.01 }) => {
     /*
      TODO: Provide another point to calculate rotation axis
            The rotational axis is perpendicular to the plane constructed by ref, targetRef, and another Vector3
