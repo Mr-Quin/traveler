@@ -19,18 +19,18 @@ const FlareLight = () => {
     const light = useRef<THREE.PointLight>()
 
     useEffect(() => {
-        // lensflare.addElement(new LensflareElement(flareTex, 200, 0))
+        lensflare.addElement(new LensflareElement(flareTex, 200, 0))
 
         for (let i = 0; i < 10; i++) {
             const offset = randomRange(0.05, 0.4)
             const size = randomRange(16, 48)
-            const color = new THREE.Color().setHSL(randomRange(0, 1), randomRange(0, 0.3), 0.5)
+            const color = new THREE.Color().setHSL(randomRange(0, 1), randomRange(0, 0.1), 0.5)
             lensflare.addElement(new LensflareElement(flareBlurTex, size, offset, color))
         }
         for (let i = 0; i < 5; i++) {
             const offset = randomRange(-0.15, -0.05)
             const size = randomRange(16, 48)
-            const color = new THREE.Color().setHSL(randomRange(0, 1), randomRange(0, 0.3), 0.5)
+            const color = new THREE.Color().setHSL(randomRange(0, 1), randomRange(0, 0.1), 0.5)
             lensflare.addElement(new LensflareElement(flareBlurTex, size, offset, color))
         }
 

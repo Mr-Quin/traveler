@@ -4,6 +4,7 @@ import { useThree } from 'react-three-fiber'
 import useWarpStore from '../../stores/WarpStore'
 import useBodyStore from '../../stores/BodyStore'
 import { OrbitControls } from 'drei'
+import Vessel from './Vessel'
 
 const targets = useBodyStore.getState().bodies
 const warpToSelector = (state) => state.actions.warpTo
@@ -35,9 +36,7 @@ const Rig = (props) => {
         <>
             <group ref={group}>
                 <group>
-                    <mesh position={[0, -0.2, 1]}>
-                        <boxBufferGeometry attach="geometry" args={[0.5, 0.1, 0.5]} />
-                    </mesh>
+                    {/*<Vessel position={[0, -0.2, 1]} scale={[0.08, 0.08, 0.08]} />*/}
                     {props.children}
                 </group>
             </group>

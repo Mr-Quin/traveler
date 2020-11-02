@@ -18,7 +18,7 @@ const Effects = () => {
     return (
         <effectComposer ref={composer} args={[gl]}>
             <renderPass attachArray="passes" scene={scene} camera={camera} />
-            <unrealBloomPass attachArray="passes" args={[aspect, 1, 1, 0.2]} />
+            <unrealBloomPass attachArray="passes" args={[aspect, 0.4, 1, 0.2]} />
             <shaderPass
                 attachArray="passes"
                 args={[FXAAShader]}

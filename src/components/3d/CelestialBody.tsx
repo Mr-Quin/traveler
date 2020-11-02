@@ -24,7 +24,7 @@ const CelestialBody = forwardRef(({ children, ...props }: CelestialBodyProps, re
 
     return (
         <group ref={ref as React.MutableRefObject<THREE.Group>} {...props}>
-            {isStar ? <pointLight color={'#ffffff'} intensity={1} /> : null}
+            {isStar ? <FlareLight /> : null}
             <mesh ref={mesh} scale={[diameter, diameter, diameter]}>
                 <sphereBufferGeometry attach="geometry" args={[1, 64, 32]} />
                 <meshStandardMaterial

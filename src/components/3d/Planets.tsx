@@ -16,16 +16,16 @@ const Planets = () => {
         <>
             {bodies.map((body) => (
                 <CelestialBody {...body} key={body.name}>
-                    {body.isStar ? (
-                        <sprite scale={[0.5, 0.5, 0.5]}>
-                            <spriteMaterial
-                                attach={'material'}
-                                map={sunCorona}
-                                alphaMap={sunCorona}
-                                sizeAttenuation={false}
-                            />
-                        </sprite>
-                    ) : null}
+                    {/*{body.isStar ? (*/}
+                    {/*    <sprite scale={[0.5, 0.5, 0.5]}>*/}
+                    {/*        <spriteMaterial*/}
+                    {/*            attach={'material'}*/}
+                    {/*            map={sunCorona}*/}
+                    {/*            alphaMap={sunCorona}*/}
+                    {/*            sizeAttenuation={false}*/}
+                    {/*        />*/}
+                    {/*    </sprite>*/}
+                    {/*) : null}*/}
                 </CelestialBody>
             ))}
         </>

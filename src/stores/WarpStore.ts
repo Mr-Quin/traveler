@@ -13,11 +13,13 @@ type WarpStore = {
         speed: number
         targetSpeed: number
         warping: boolean
+        stopped: boolean
     }
     actions: {
         readonly startWarp: () => void
-        readonly endWarp: () => void
+        readonly stop: () => void
         readonly warpTo: (to: CelestialBodyType) => void
+        readonly alignTo: (to: CelestialBodyType) => void
     }
     init: (rig: THREE.Group, camera: THREE.Camera, controls: any) => void
 }
@@ -36,6 +38,7 @@ const useWarpStore = create<WarpStore>((set, get) => ({
         speed: 0,
         targetSpeed: 0,
         warping: false,
+        stopped: true,
     },
     actions: {
         startWarp: () =>
@@ -44,20 +47,31 @@ const useWarpStore = create<WarpStore>((set, get) => ({
                 state.mutations.targetSpeed = 100
                 state.mutations.warping = true
             }),
-        endWarp: () =>
+        stop: () =>
             // @ts-ignore
             set((state) => {
                 state.mutations.targetSpeed = 0
                 state.mutations.warping = false
+                state.mutations.stopped = true
             }),
-        warpTo: (to) => {
+        alignTo: (to) =>
             // @ts-ignore
             set((state) => {
+                state.mutations.targetSpeed = 5
                 state.mutations.target = to
-                state.mutations.threshold =
-                    to.diameter / 2 / Math.tan((Math.PI * FOV) / 360) + DISTANCE_OFFSET // calculate the distance needed for the object to fill the screen. Offset for deceleration
-            })
-            get().actions.startWarp()
+                state.mutations.stopped = false
+            }),
+        warpTo: (to) => {
+            get().actions.alignTo(to)
+            setTimeout(() => {
+                // @ts-ignore
+                set((state) => {
+                    // state.mutations.target = to
+                    state.mutations.threshold =
+                        to.diameter / 2 / Math.tan((Math.PI * FOV) / 360) + DISTANCE_OFFSET // calculate the distance needed for the object to fill the screen. Offset for deceleration
+                })
+                get().actions.startWarp()
+            }, 3000)
         },
     },
     init: (rig, camera, controls) => {
@@ -80,6 +94,7 @@ const useWarpStore = create<WarpStore>((set, get) => ({
                 speed,
                 targetSpeed,
                 warping,
+                stopped,
                 rig,
                 camera,
                 controls,
@@ -87,9 +102,9 @@ const useWarpStore = create<WarpStore>((set, get) => ({
                 threshold,
             } = mutations
 
-            if (!warping) {
+            if (stopped) {
                 mutations.speed += (0 - speed) * 0.05 // target speed is 0 when not warping. Decelerate faster
-            } else if (warping) {
+            } else if (!stopped) {
                 // rotate rig to face target
                 const q1 = new THREE.Quaternion().copy(rig!.quaternion)
                 rig!.lookAt(target!.position)
@@ -105,11 +120,12 @@ const useWarpStore = create<WarpStore>((set, get) => ({
 
                 // end warp when close to target
                 const distanceLeft = rig!.position.distanceTo(target!.position) - target!.diameter
-                if (distanceLeft < threshold) actions.endWarp()
+                if (distanceLeft < threshold) actions.stop()
             }
             // apply speed to position
             rig!.translateZ(mutations.speed / 20)
-            camera!.position.lerp(rig!.position, 0.8)
+            // camera!.position.lerp(rig!.position, 0.8)
+            camera!.position.copy(rig!.position)
             // controls.target.copy(rig!.position)
         })
     },
