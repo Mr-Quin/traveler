@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-// import useStore from '../store'
 import useVR from '../hooks/useVR'
-import { useAudioStore } from '../store'
+import useAudioStore from '../stores/AudioStore'
 
 type UIButtonProps = {
     readonly position?: string

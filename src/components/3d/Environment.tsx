@@ -1,6 +1,6 @@
 import { useLoader, useThree } from 'react-three-fiber'
 import * as THREE from 'three'
-import sky from '../../assets/8k_stars_milky_way.jpg'
+import sky from '../../assets/textures/8k_stars_milky_way.jpg'
 import { useEffect } from 'react'
 
 const Environment = () => {

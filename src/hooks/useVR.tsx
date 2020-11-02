@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { VRButton } from 'three/examples/jsm/webxr/VRButton'
-import useStore from '../store'
+import useStore from '../stores/store'
 
 interface XRSystem {
     isSessionSupported(sessionType: string): Promise<null>

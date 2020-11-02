@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useThree } from 'react-three-fiber'
 import * as THREE from 'three'
-import useStore from '../../store'
+import useStore from '../../stores/store'
 
 const VRCamera = () => {
     const { camera, gl } = useThree()
