@@ -1,16 +1,19 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './routes/Home'
 import Warp from './routes/Warp'
 
 const App = () => {
     return (
-        <Router>
+        <Router basename="/">
             <Switch>
-                <Route exact path={process.env.PUBLIC_URL + '/'}>
+                <Route exact path={'.'}>
                     <Home />
                 </Route>
-                <Route exact path={process.env.PUBLIC_URL + '/warp'}>
+                <Route exact path={'/warp'}>
+                    <Warp />
+                </Route>
+                <Route>
                     <Warp />
                 </Route>
             </Switch>
