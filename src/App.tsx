@@ -5,18 +5,18 @@ import Warp from './routes/Warp'
 
 const App = () => {
     return (
-        <Router basename="/">
-            <Switch>
-                <Route exact path={'.'}>
-                    <Home />
-                </Route>
-                <Route exact path={'/warp'}>
-                    <Warp />
-                </Route>
-                <Route>
-                    <Warp />
-                </Route>
-            </Switch>
+        <Router basename={process.env.PUBLIC_URL}>
+            {/*<Switch>*/}
+            {/*    <Route exact path={'/traveler'}>*/}
+            {/*        <Home />*/}
+            {/*    </Route>*/}
+            {/*    <Route exact path={'/warp'}>*/}
+            {/*        <Warp />*/}
+            {/*    </Route>*/}
+            <Route>
+                <Warp />
+            </Route>
+            {/*</Switch>*/}
         </Router>
     )
 }
