@@ -7,10 +7,10 @@ const App = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/traveler">
+                <Route exact path={process.env.PUBLIC_URL + '/'}>
                     <Home />
                 </Route>
-                <Route exact path="/traveler/warp">
+                <Route exact path={process.env.PUBLIC_URL + '/warp'}>
                     <Warp />
                 </Route>
             </Switch>
